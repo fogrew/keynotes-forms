@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Формы</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Theme docs: https://shwr.me/shower/themes/ribbon/ -->
+</head>
+
+<body class="shower list">
+  <header class="caption">
+      <h1>Формы</h1>
+      <p>для Epic Skills</p>
+  </header>
+
+  <section class="slide skip">
+    <h2 class="shout">Формы</h2>
+  </section>
+
+  <section class="slide">
+    <h2>name</h2>
+    <p>Зачем нужен атрибут <code>name</code>?</p>
+    <table class="compare">
+      <tbody>
+        <tr>
+          <td>
+            <div class="tip">HTML</div>
+            <code>&lt;form <mark>id</mark>="my-form"&gt;...&lt;/form&gt;</code>
+          </td>
+          <td>
+            <div class="tip">HTML</div>
+            <code>&lt;form <mark>name</mark>="my-form"&gt;...&lt;/form&gt;</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tip">JavaScript</div>
+            <code>document.getElementById("my-form");</code>
+          </td>
+          <td>
+            <div class="tip">JavaScript</div>
+            <code>document.forms["my-form"];</code><br>
+            <code>document.forms[0];</code>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Без <code>name</code></td>
+          <td>С <code>name</code></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>elements</h2>
+    <p>Свойство формы <mark>elements</mark> содержит коллекцию всех значащих элементов</p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">HTML</div>
+          <code>&lt;form name="form"&gt;</code><br>
+          <code>&lt;input name="text-input" type="text"&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var form = document.forms.form;</code>
+          <code>form.elements["text-input"];</code>
+          <code>form.elements[0];</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>elements</h2>
+    <p>Элементы формы с потомками так же имеют свойство <code>elements</code></p>
+    <table class="compare">
+      <tr>
+        <td style="width:52%">
+          <div class="tip">HTML</div>
+          <code>&lt;form name="form"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;fieldset name="fieldset"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="text-input" type="text"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;/fieldset&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var form = document.forms.form;</code><br>
+          <code>var fields = form.elements.fieldset;</code><br>
+          <code>fields.elements["text-input"];</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>form.name</h2>
+    <p>Получить доступ к элементам формы можно не только через <code>form.elements[name/index]</code>, но и проще: <code>form[index/name]</code>.</p>
+    <p class="next">Этот способ короче, но обладает одной неприятной особенностью: если к элементу обратиться по его name, а потом свойство name изменить, то он по-прежнему будет доступен под старым именем.</p>
+    <p class="next"><a href="examples/form-name.html" target="_blank">Проверим</a></p>
+  </section>
+
+  <section class="slide">
+    <h2>form</h2>
+    <p>Элементы формы ссылаются на свою форму через свойство <code>form</code></p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">HTML</div>
+          <code>&lt;form&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;fieldset name="fieldset"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="input" type="text"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;/fieldset&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var input = document.getElementById("input");</code><br>
+          <code>input.form;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+
+<!-- добавить элемент label -->
+<!-- https://learn.javascript.ru/form-elements#элемент-label -->
+
+<!-- написать подробнее про инпуты и текстареи -->
+<!-- https://learn.javascript.ru/form-elements#элементы-input-и-textarea -->
+
+
+  <section class="slide">
+    <h2>value</h2>
+    <p>Текущее значение элемента формы можно получить через свойство <code>value</code></p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">HTML</div>
+          <code>&lt;form name="form"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;fieldset name="fieldset"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="input" type="text"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;/fieldset&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>document.forms[0].elements.input.value;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>value</h2>
+    <p>Свойство <code>value</code> элемента <code>select</code> соответствует свойству <code>value</code> выбранного в данный момент элемента <code>option</code></p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">HTML</div>
+          <code>&lt;form name="form"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;select name="select"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="0"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First option</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/option&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;/select&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>document.forms[0].elements.select.value;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>selectedIndex</h2>
+    <p>Свойство <code>selectedIndex</code> элемента <code>select</code> указывает на позицию в списке выбранного в данный момент элемента <code>option</code></p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;select name="select"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;option value="0"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;First option</code><br>
+          <code>&nbsp;&nbsp;&lt;/option&gt;</code><br>
+          <code>&lt;/select&gt;</code><br>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var s = document.forms[0].elements.select;</code>
+          <code>s.selectedIndex;</code>
+        </td>
+      </tr>
+    </table>
+    <p>Установка <code>selectedIndex = -1</code> очистит выбор.</p>
+  </section>
+
+  <section class="slide">
+    <h2>options</h2>
+    <p>Список всех опций <code>select</code> можно получить через его свойство <code>options</code></p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;select name="select"&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;option value="0"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;First option</code><br>
+          <code>&nbsp;&nbsp;&lt;/option&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;option value="1"&gt;</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;Second option</code><br>
+          <code>&nbsp;&nbsp;&lt;/option&gt;</code><br>
+          <code>&lt;/select&gt;</code><br>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var s = document.forms[0].elements.select;</code>
+          <code>s.options;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- описать про select multiple -->
+  <!-- https://learn.javascript.ru/form-elements#элементы-select-и-option -->
+
+  <section class="slide">
+    <h2>new Option</h2>
+    <p>Новую опцию можно создать с помощью конструктора <code>new Option</code>. Добавить опцию в <code>select</code> можно методом <code>add</code>.</p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var s = document.forms[0].elements.select;</code><br>
+          <code class="next">var opt = new Option(<mark>text</mark>, <mark>value</mark>, <mark>dafaultSelected</mark>, <mark>selected</mark>);</code><br>
+          <code class="next">var opt = new Option("Text",  123, false, true);</code><br>
+          <code class="next">s.add(opt, <mark>index</mark>);</code><br>
+          <code class="next">s.add(opt, 2);</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>checked</h2>
+    <p>Значение поля <code>checkbox</code> можно забрать через свойство <code>checked</code></p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="checkbox" name="checkbox" checked&gt;</code><br>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var c = document.forms[0].elements.checkbox;</code>
+          <code>c.checked;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>radio</h2>
+    <p>Значение <code>radio</code> можно забрать через свойство <code>value</code></p>
+    <table class="compare">
+      <tr>
+        <td style="width: 55%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="radio" name="radio" value="1"&gt;</code><br>
+          <code>&lt;input type="radio" name="radio" value="2"&gt;</code><br>
+          <code>&lt;input type="radio" name="radio" value="3"&gt;</code><br>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var c = document.forms[0].elements.radio;</code>
+          <code>c.value;</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2 class="shout">События в формах</h2>
+  </section>
+
+  <section class="slide">
+    <h2>focus</h2>
+    <p>Фокус на полях можно не только слушать, но и принудительно выставлять</p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="text" name="input"&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var text = document.forms[0].elements.input;</code><br>
+          <code>text.addEventListener("focus", function(e){</code><br>
+          <code>&nbsp;&nbsp;console.log("focus");</code><br>
+          <code>}, true);</code><br>
+          <code>text.focus();</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+<!-- делегирование focus/blur -->
+<!-- https://learn.javascript.ru/focus-blur#делегирование-с-focus-blur -->
+
+  <!-- разрешить фокус на любом элементе tabindex -->
+  <!-- https://learn.javascript.ru/focus-blur#разрешаем-фокус-на-любом-элементе-tabindex -->
+
+
+  <section class="slide">
+    <h2>blur</h2>
+    <p>Фокус точно также можно и убирать</p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="text" name="input" autofocus&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var text = document.forms[0].elements.input;</code><br>
+          <code>text.addEventListener("blur", function(e){</code><br>
+          <code>&nbsp;&nbsp;console.log("blur");</code><br>
+          <code>}, true);</code><br>
+          <code>text.blur();</code>
+        </td>
+      </tr>
+    </table>
+    <p class="next"><mark>Кстати,</mark> текущий элемент, на котором фокус, доступен как <code>document.activeElement</code>.</p>
+  </section>
+
+<!-- focusin/focusout -->
+<!-- https://learn.javascript.ru/focus-blur#события-focusin-focusout -->
+<!-- caniuse -->
+<!-- http://caniuse.com/#feat=focusin-focusout-events -->
+
+  <section class="slide">
+    <h2>change</h2>
+    <p>Событие <code>change</code> происходит по окончании изменении значения элемента формы, когда это изменение зафиксировано.</p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="text" name="input"&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var text = document.forms[0].elements.input;</code><br>
+          <code>text.addEventListener("change", function(e){</code><br>
+          <code>&nbsp;&nbsp;console.log("change");</code><br>
+          <code>});</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>input</h2>
+    <p>Событие <code>input</code> срабатывает <i>тут же</i> при изменении значения текстового элемента.</p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;input type="text" name="input"&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var text = document.forms[0].elements.input;</code><br>
+          <code>text.addEventListener("input", function(e){</code><br>
+          <code>&nbsp;&nbsp;console.log("input");</code><br>
+          <code>});</code><br>
+        </td>
+      </tr>
+    </table>
+    <p align="right" class="next"><a href="https://learn.javascript.ru/events-change#событие-input" target="_blank">IE9- не умеет <code>input</code></a></p>
+  </section>
+
+  <section class="slide">
+    <h2>Копипаста!</h2>
+    <p>Событие <code>change</code> происходит по окончании изменении значения элемента формы, когда это изменение зафиксировано.</p>
+    <table class="compare">
+      <tr>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var text = document.forms[0].elements.input;</code><br>
+          <code>var events = ["copy", "paste", "cut"];</code><br>
+          <code>for (var i = 0, len = events.length; i < len; i++) {</code><br>
+          <code>&nbsp;&nbsp;text.addEventListener(events[i], function(event) {</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();</code><br>
+          <code>&nbsp;&nbsp;});</code><br>
+          <code>}</code><br>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <h2>submit</h2>
+    <p>Чтобы отправить форму на сервер, можно либо нажать кнопку <code>&lt;input type="submit"&gt;</code> или <code>&lt;input type="image"&gt;</code>, либо нажать Enter, находясь на каком-нибудь поле.</p>
+    <table class="compare">
+      <tr>
+        <td style="width: 40%">
+          <div class="tip">HTML</div>
+          <code>&lt;form name="form"&gt;</code><br>
+          <code>&lt;input name="text-input" type="text"&gt;</code><br>
+          <code>&lt;/form&gt;</code>
+        </td>
+        <td>
+          <div class="tip">JavaScript</div>
+          <code>var form = document.forms[0];</code><br>
+          <code>text.addEventListener("submit", function(e){</code><br>
+          <code>&nbsp;&nbsp;console.log("submit");</code><br>
+          <code>});</code><br>
+          <code>form.submit();</code>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <div class="progress"></div>
+  <script src="shower/shower.min.js"></script>
+</body>
+</html>

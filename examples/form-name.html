@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Формы - имя поля через form.name</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+    form {
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      font-size: inherit;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin-top: .5em;
+      background-color: white;
+      color: black;
+      border: 1px solid currentColor;
+      font-size: 1em;
+      padding: .5em 2em;
+      font-weight: bold;
+    }
+    .info {
+      font-size: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <form name="myform">
+    <input name="text">
+    <button type="button" name="btn">Проверить</button>
+  </form>
+
+  <div class="info">
+  <pre>
+    var form = document.forms.myform;
+
+    form.elements.btn.onclick = function() {
+      console.log( form.elements.text == form.text ); // это тот самый INPUT?
+
+      form.text.name = "new-name"; // меняем name ему
+
+      console.log( form.elements.text ); // нет больше элемента с таким именем?
+
+      console.log( form.text ); //  ???
+    }
+  </pre>
+  </div>
+
+  <script>
+    var form = document.forms.myform;
+
+    form.elements.btn.onclick = function() {
+      console.log( form.elements.text == form.text );
+
+      form.text.name = "new-name";
+
+      console.log( form.elements.text );
+
+      console.log( form.text );
+    }
+  </script>
+
+</body>
+</html>
